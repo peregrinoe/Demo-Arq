@@ -1,0 +1,69 @@
+body.background-body {
+    font-family: 'Lato', sans-serif;
+    background-color: #10213D;
+    color: white;
+    margin: 0;
+    padding: 0;
+  }
+
+  .navbar {
+    display: flex;
+    background-color: #10213D;
+    padding: 20px;
+    gap: 30px;
+  }
+
+  .navbar a {
+    color: #A8CCE9;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    white-space: nowrap;
+  }
+
+  .nav-item {
+    position: relative;
+  }
+
+  .dropdown,
+  .sub-dropdown,
+  .sub-sub-dropdown {
+    display: none;
+    position: absolute;
+    background-color: #1f2e50;
+    min-width: 200px;
+    z-index: 1000;
+  }
+
+  /* Menú nivel 1 (Servicios) */
+  .nav-item:hover > .dropdown {
+    display: block;
+    top: 100%;
+    left: 0;
+  }
+
+  /* Menú nivel 2 (Proyectos, Trámite, Obra) */
+  .dropdown div:hover > .sub-dropdown {
+    display: block;
+    top: 0;
+    left: 100%;
+  }
+
+  /* Menú nivel 3 (Diseño 1-5) */
+  .sub-dropdown div:hover > .sub-sub-dropdown {
+    display: block;
+    top: 0;
+    left: 100%;
+  }
+
+  .dropdown a:hover,
+  .sub-dropdown a:hover,
+  .sub-sub-dropdown a:hover {
+    background-color: #A8CCE9;
+    color: #10213D;
+  }
+
+  .dropdown div,
+  .sub-dropdown div {
+    position: relative;
+  }
