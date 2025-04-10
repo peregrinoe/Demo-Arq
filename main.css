@@ -1,18 +1,32 @@
+/* General */
 body.background-body {
     font-family: 'Lato', sans-serif;
     background-color: #10213D;
     color: white;
     margin: 0;
     padding: 0;
+    overflow-x: hidden; /* Previene desplazamiento horizontal */
   }
-
+  
+  .grid-layout {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    min-height: 100vh;
+    width: 100%; /* Asegura que nunca se desborde */
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+  
+  /* NAVBAR horizontal y alineada a la derecha */
   .navbar {
     display: flex;
+    flex-wrap: wrap; /* Para que no se desborde en móvil */
+    justify-content: flex-end;
     background-color: #10213D;
-    padding: 20px;
-    gap: 30px;
+    padding: 20px 20px;
+    gap: 20px;
   }
-
+  
   .navbar a {
     color: #A8CCE9;
     text-decoration: none;
@@ -20,11 +34,12 @@ body.background-body {
     display: block;
     white-space: nowrap;
   }
-
+  
   .nav-item {
     position: relative;
   }
-
+  
+  /* Menús desplegables flotantes */
   .dropdown,
   .sub-dropdown,
   .sub-sub-dropdown {
@@ -32,62 +47,150 @@ body.background-body {
     position: absolute;
     background-color: #1f2e50;
     min-width: 200px;
-    z-index: 1000;
+    z-index: 9999;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    border-radius: 4px;
+    overflow: hidden;
   }
-
-  /* Menú nivel 1 (Servicios) */
+  
+  /* Nivel 1: Servicios */
   .nav-item:hover > .dropdown {
     display: block;
     top: 100%;
     left: 0;
   }
-
-  /* Menú nivel 2 (Proyectos, Trámite, Obra) */
+  
+  /* Nivel 2: Proyectos, Trámite, Obra */
   .dropdown div:hover > .sub-dropdown {
     display: block;
     top: 0;
     left: 100%;
   }
-
-  /* Menú nivel 3 (Diseño 1-5) */
+  
+  /* Nivel 3: Dentro de sub-dropdown */
   .sub-dropdown div:hover > .sub-sub-dropdown {
     display: block;
     top: 0;
     left: 100%;
   }
-
+  
+  /* Hover en enlaces */
   .dropdown a:hover,
   .sub-dropdown a:hover,
   .sub-sub-dropdown a:hover {
     background-color: #A8CCE9;
     color: #10213D;
   }
-
+  
   .dropdown div,
   .sub-dropdown div {
     position: relative;
   }
-
-.whatsapp-float {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #25D366;
-  color: white;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  font-size: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
-  text-decoration: none;
-}
-
-.whatsapp-float:hover {
-  transform: scale(1.1);
-  background-color: #1ebe5d;
-}
+  
+  /* Contenido principal */
+  .main-content {
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+  }
+  
+  /* WhatsApp */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .whatsapp-float:hover {
+    transform: scale(1.1);
+    background-color: #1ebe5d;
+  }
+  
+  /* ---------------------- MENÚ FLOTANTE PARA MÓVIL ---------------------- */
+  
+  /* En móvil, convertimos el menú en un acordeón desplegable (toggle) */
+  @media (max-width: 768px) {
+    /* Navbar en móvil: se alinea al centro */
+    .navbar {
+      justify-content: center;
+      padding: 15px 10px;
+    }
+  
+    /* Contenido principal en móvil */
+    .main-content {
+      padding: 15px;
+    }
+  
+    /* Ocultar los submenús por defecto */
+    .dropdown,
+    .sub-dropdown,
+    .sub-sub-dropdown {
+      position: static; /* Hacemos que no floten */
+      display: none;
+      background-color: #10213D;
+      width: 100%; /* Asegura que el menú ocupe todo el ancho */
+    }
+  
+    /* Mostrar submenús cuando se hace clic */
+    .nav-item.active > .dropdown {
+      display: block;
+      background-color: #10213D;
+      padding-left: 20px; /* Espaciado a la izquierda */
+    }
+  
+    .dropdown div.active > .sub-dropdown {
+      display: block;
+      padding-left: 40px;
+    }
+  
+    .sub-dropdown div.active > .sub-sub-dropdown {
+      display: block;
+      padding-left: 60px;
+    }
+  
+    /* Menú hamburguesa (icono de tres líneas) */
+    .menu-toggle {
+      display: block;
+      cursor: pointer;
+      font-size: 30px;
+      color: #A8CCE9;
+      z-index: 9999;
+    }
+  
+    .navbar {
+      display: none; /* Ocultamos la navbar por defecto */
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: #10213D;
+      width: 100%;
+      padding: 20px;
+      gap: 10px;
+      flex-direction: column;
+    }
+  
+    /* Mostramos la navbar solo cuando el menú está activo */
+    .navbar.active {
+      display: flex;
+    }
+  
+    /* Ajuste en el icono del menú cuando está activo */
+    .menu-toggle.active {
+      color: #A8CCE9;
+      transform: rotate(90deg);
+    }
+  }
