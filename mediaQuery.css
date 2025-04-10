@@ -1,0 +1,73 @@
+/* En móvil, convertimos el menú en un acordeón desplegable (toggle) */
+@media (max-width: 768px) {
+    /* Navbar en móvil: se alinea al centro */
+    .navbar {
+      justify-content: center;
+      padding: 15px 10px;
+    }
+  
+    /* Contenido principal en móvil */
+    .main-content {
+      padding: 15px;
+    }
+  
+    /* Ocultar los submenús por defecto */
+    .dropdown,
+    .sub-dropdown,
+    .sub-sub-dropdown {
+      position: static; /* Hacemos que no floten */
+      display: none;
+      background-color: #10213D;
+      width: 100%; /* Asegura que el menú ocupe todo el ancho */
+    }
+  
+    /* Mostrar submenús cuando se hace clic */
+    .nav-item.active > .dropdown {
+      display: block;
+      background-color: #10213D;
+      padding-left: 20px; /* Espaciado a la izquierda */
+    }
+  
+    .dropdown div.active > .sub-dropdown {
+      display: block;
+      padding-left: 40px;
+    }
+  
+    .sub-dropdown div.active > .sub-sub-dropdown {
+      display: block;
+      padding-left: 60px;
+    }
+  
+    /* Menú hamburguesa (icono de tres líneas) */
+    .menu-toggle {
+      display: block;
+      cursor: pointer;
+      font-size: 30px;
+      color: #A8CCE9;
+      z-index: 9999;
+    }
+  
+    .navbar {
+      display: none; /* Ocultamos la navbar por defecto */
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: #10213D;
+      width: 100%;
+      padding: 20px;
+      gap: 10px;
+      flex-direction: column;
+    }
+  
+    /* Mostramos la navbar solo cuando el menú está activo */
+    .navbar.active {
+      display: flex;
+    }
+  
+    /* Ajuste en el icono del menú cuando está activo */
+    .menu-toggle.active {
+      color: #A8CCE9;
+      transform: rotate(90deg);
+    }
+  }
+  

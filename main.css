@@ -22,13 +22,13 @@ body.background-body {
     display: flex;
     flex-wrap: wrap; /* Para que no se desborde en móvil */
     justify-content: flex-end;
-    background-color: #10213D;
+    background-color: #A8CCE9; /* Fondo claro del navbar */
     padding: 20px 20px;
     gap: 20px;
   }
   
   .navbar a {
-    color: #A8CCE9;
+    color: #10213D; /* Texto oscuro en el navbar */
     text-decoration: none;
     padding: 10px 15px;
     display: block;
@@ -45,15 +45,24 @@ body.background-body {
   .sub-sub-dropdown {
     display: none;
     position: absolute;
-    background-color: #1f2e50;
+    background-color: #A8CCE9; /* Fondo claro de los submenús */
+    color: #10213D; /* Texto oscuro en los submenús */
     min-width: 200px;
     z-index: 9999;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     border-radius: 4px;
     overflow: hidden;
   }
   
-  /* Nivel 1: Servicios */
+  /* Aseguramos que el texto en los submenús no se sobreponga al color de fondo */
+  .nav-item a,
+  .dropdown a,
+  .sub-dropdown a,
+  .sub-sub-dropdown a {
+    color: #10213D; /* Color de texto oscuro para los enlaces */
+    text-decoration: none; /* Quitar subrayado de los enlaces */
+  }
+  
   .nav-item:hover > .dropdown {
     display: block;
     top: 100%;
@@ -64,22 +73,22 @@ body.background-body {
   .dropdown div:hover > .sub-dropdown {
     display: block;
     top: 0;
-    left: 100%;
+    left: 0;
   }
   
   /* Nivel 3: Dentro de sub-dropdown */
   .sub-dropdown div:hover > .sub-sub-dropdown {
     display: block;
     top: 0;
-    left: 100%;
+    left: 0;
   }
   
   /* Hover en enlaces */
   .dropdown a:hover,
   .sub-dropdown a:hover,
   .sub-sub-dropdown a:hover {
-    background-color: #A8CCE9;
-    color: #10213D;
+    background-color: #10213D;
+    color: #A8CCE9; /* Color de texto claro en hover */
   }
   
   .dropdown div,
@@ -120,77 +129,3 @@ body.background-body {
     background-color: #1ebe5d;
   }
   
-  /* ---------------------- MENÚ FLOTANTE PARA MÓVIL ---------------------- */
-  
-  /* En móvil, convertimos el menú en un acordeón desplegable (toggle) */
-  @media (max-width: 768px) {
-    /* Navbar en móvil: se alinea al centro */
-    .navbar {
-      justify-content: center;
-      padding: 15px 10px;
-    }
-  
-    /* Contenido principal en móvil */
-    .main-content {
-      padding: 15px;
-    }
-  
-    /* Ocultar los submenús por defecto */
-    .dropdown,
-    .sub-dropdown,
-    .sub-sub-dropdown {
-      position: static; /* Hacemos que no floten */
-      display: none;
-      background-color: #10213D;
-      width: 100%; /* Asegura que el menú ocupe todo el ancho */
-    }
-  
-    /* Mostrar submenús cuando se hace clic */
-    .nav-item.active > .dropdown {
-      display: block;
-      background-color: #10213D;
-      padding-left: 20px; /* Espaciado a la izquierda */
-    }
-  
-    .dropdown div.active > .sub-dropdown {
-      display: block;
-      padding-left: 40px;
-    }
-  
-    .sub-dropdown div.active > .sub-sub-dropdown {
-      display: block;
-      padding-left: 60px;
-    }
-  
-    /* Menú hamburguesa (icono de tres líneas) */
-    .menu-toggle {
-      display: block;
-      cursor: pointer;
-      font-size: 30px;
-      color: #A8CCE9;
-      z-index: 9999;
-    }
-  
-    .navbar {
-      display: none; /* Ocultamos la navbar por defecto */
-      position: absolute;
-      top: 0;
-      right: 0;
-      background-color: #10213D;
-      width: 100%;
-      padding: 20px;
-      gap: 10px;
-      flex-direction: column;
-    }
-  
-    /* Mostramos la navbar solo cuando el menú está activo */
-    .navbar.active {
-      display: flex;
-    }
-  
-    /* Ajuste en el icono del menú cuando está activo */
-    .menu-toggle.active {
-      color: #A8CCE9;
-      transform: rotate(90deg);
-    }
-  }
